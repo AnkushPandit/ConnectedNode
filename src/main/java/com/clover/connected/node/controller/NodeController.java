@@ -30,7 +30,7 @@ public class NodeController {
     @PostMapping(path = "/add",
             produces = "application/json",
             consumes = "application/json")
-    private ResponseEntity<Object> addNodeConnection(@RequestBody Edge edge) {
+    public ResponseEntity<Object> addNodeConnection(@RequestBody Edge edge) {
         try {
             if(!checkEdgeValidity(edge)) {
                 return ResponseEntity.badRequest().
@@ -51,7 +51,7 @@ public class NodeController {
     @GetMapping(path = "/get",
             produces = "application/json",
             consumes = "application/json")
-    private ResponseEntity<Object> getNodeConnectivity(@RequestBody Edge edge) {
+    public ResponseEntity<Object> getNodeConnectivity(@RequestBody Edge edge) {
         try {
             if(!checkEdgeValidity(edge)) {
                 return ResponseEntity.badRequest().

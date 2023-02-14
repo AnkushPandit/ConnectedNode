@@ -33,6 +33,12 @@ public class NodeHandler {
     }
 
     public boolean getConnection(@NonNull Edge edge) {
-        return unionFind.checkNodeConnectivity(edge.getNodeOne(), edge.getNodeTwo());
+        try {
+            return unionFind.checkNodeConnectivity(edge.getNodeOne(), edge.getNodeTwo());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            throw new RuntimeException("Error occurred while checking node connectivity");
+        }
     }
 }
