@@ -9,7 +9,7 @@ import static com.clover.connected.node.constants.AppConstants.MAX_NODES;
 @Component
 public class Graph {
 
-    private final int[] parent = new int[MAX_NODES+1]; // Store the parent of each vertex
+    private final int[] parentSet = new int[MAX_NODES+1]; // Store the parent of each vertex
 
     private final int[] sizeSet = new int[MAX_NODES+1]; // Stores the size of each set
 
@@ -22,7 +22,7 @@ public class Graph {
     private Graph() {
         /* Initialize all nodes as single set */
         for(int i = 1; i <= MAX_NODES; i++) {
-            parent[i] = i;
+            parentSet[i] = i;
             sizeSet[i] = 1;
         }
     }
@@ -35,7 +35,7 @@ public class Graph {
     }
 
     public int[] getParentSet() {
-        return parent;
+        return parentSet;
     }
 
     public int[] getSizeSet() {

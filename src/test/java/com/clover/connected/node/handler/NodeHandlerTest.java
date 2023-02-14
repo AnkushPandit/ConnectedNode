@@ -1,6 +1,5 @@
 package com.clover.connected.node.handler;
 
-import com.clover.connected.node.graph.Graph;
 import com.clover.connected.node.graph.UnionFind;
 import com.clover.connected.node.model.Edge;
 import org.junit.jupiter.api.Assertions;
@@ -51,24 +50,24 @@ class NodeHandlerTest {
         when(unionFind.checkNodeConnectivity(nodeOne, nodeTwo)).thenReturn(true);
         assertEquals("", "Nodes are already connected",
                 nodeHandler.addNodes(validInput));
-        Mockito.verify(unionFind, times(0)).unionSet(nodeOne, nodeTwo);
+        Mockito.verify(unionFind, times(0)).connectNodes(nodeOne, nodeTwo);
     }
 
     @Test
     @DisplayName("Test creation of a new connection is successful")
     void testEdgeCreationHappyCase() {
         when(unionFind.checkNodeConnectivity(nodeOne, nodeTwo)).thenReturn(false);
-        doNothing().when(unionFind).unionSet(nodeOne, nodeTwo);
+        doNothing().when(unionFind).connectNodes(nodeOne, nodeTwo);
         assertEquals("", "Connection between nodes have been created successfully",
                 nodeHandler.addNodes(validInput));
-        Mockito.verify(unionFind, times(1)).unionSet(nodeOne, nodeTwo);
+        Mockito.verify(unionFind, times(1)).connectNodes(nodeOne, nodeTwo);
     }
 
     @Test
     @DisplayName("Test Exception handling while create new connection")
     void testExceptionHandlingWhileNewConnection() {
         when(unionFind.checkNodeConnectivity(nodeOne, nodeTwo)).thenReturn(false);
-        doThrow(new RuntimeException()).when(unionFind).unionSet(nodeOne, nodeTwo);
+        doThrow(new RuntimeException()).when(unionFind).connectNodes(nodeOne, nodeTwo);
         Assertions.assertThrows(RuntimeException.class, () -> nodeHandler.addNodes(validInput));
     }
 

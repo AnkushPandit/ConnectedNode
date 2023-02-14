@@ -23,7 +23,7 @@ public class NodeHandler {
             if (unionFind.checkNodeConnectivity(nodeOne, nodeTwo)) {
                 return messageForDuplicateEdge;
             }
-            unionFind.unionSet(nodeOne, nodeTwo);
+            unionFind.connectNodes(nodeOne, nodeTwo);
             return messageForSuccessfulConnections;
         } catch (Exception e) {
             e.printStackTrace();

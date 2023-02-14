@@ -14,19 +14,20 @@ public class UnionFind {
      */
 
     public int findSetRepresentative(int node) {
-        if (node == graph.getParentSet()[node]) {
+        int[] parentSet = graph.getParentSet();
+        if (node == parentSet[node]) {
             return node;
         }
 
         // Path compression technique to optimize the time complexity
-        return graph.getParentSet()[node] = findSetRepresentative(graph.getParentSet()[node]);
+        return parentSet[node] = findSetRepresentative(parentSet[node]);
     }
 
     /**
      * Function to merge two different set into a single set by finding the
      * representative of each set and merge the smallest set with the larger one
      */
-    public void unionSet(int nodeOne, int nodeTwo) {
+    public void connectNodes(int nodeOne, int nodeTwo) {
         // Finding the set representative of each element
         nodeOne = findSetRepresentative(nodeOne);
         nodeTwo = findSetRepresentative(nodeTwo);
